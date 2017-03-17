@@ -1,13 +1,36 @@
 package main.java.es.unizar.tmdad.lab0.service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.social.twitter.api.SearchResults;
+import org.springframework.messaging.core.MessageSendingOperations;
+import org.springframework.social.twitter.api.Stream;
+import org.springframework.social.twitter.api.StreamListener;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.impl.TwitterTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TwitterLookupService {
+	
+	private static final int MAX_STREAMS = 10;
+	
+	@Autowired
+	private MessageSendingOperations<String> messagingTemplate;
+	
+	// Queried streams
+	// LinkedHashMap to guarantee FIFO replacement when max number of streams is reached (insertion-ordered)
+	private LinkedHashMap<String, Stream> streams = new LinkedHashMap<String, Stream>(MAX_STREAMS){
+		// Remove oldest entry when max number of streams is reached
+		protected boolean removeEldestEntry(Map.Entry<String, Stream> eldest){
+			return this.size() > MAX_STREAMS;
+		}
+	};
+	
 	@Value("${twitter.consumerKey}")
 	private String consumerKey;
 	
@@ -20,8 +43,13 @@ public class TwitterLookupService {
 	@Value("${twitter.accessTokenSecret}")
 	private String accessTokenSecret;
 	
-	public SearchResults search(String query) {
+	public void search(String query) {
+		// Do nothing if stream was already queried
+		if (streams.containsKey(query)) return;
+		
         Twitter twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
-        return twitter.searchOperations().search(query);
+        List<StreamListener> list = new ArrayList<StreamListener>();
+        list.add(new SimpleStreamListener(messagingTemplate, query));
+        streams.put(query, twitter.streamingOperations().filter(query,  list));
     }
 }

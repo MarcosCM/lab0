@@ -1,6 +1,5 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Cliente MVC Twitter</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,19 +8,19 @@
             id="Viewport" name="viewport"/>
     <!-- Bootstrap -->
     <link rel="stylesheet" media="screen"
-          href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}"/>
+          href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <!-- Optional theme -->
     <link rel="stylesheet"
-          href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"
-          th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap-theme.min.css}"/>
+          href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"/>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"
-            th:src="@{/webjars/jquery/2.1.3/jquery.min.js}"></script>
-    <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/3.3.1/js/bootstrap.min.js}"></script>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script th:src="@{/functions.js}" src="../static/functions.js"></script>
+
+    <!-- SockJS & StompJS for WebSockets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
     <!-- Latest compiled and minified JavaScript -->
 </head>
 <body>
@@ -33,9 +32,7 @@
             2017-2018</p>
     </div>
     <div class="nav navbar-right">
-        <a title="UNIZAR" href="http://www.unizar.es"><img height="50"
-                                                           th:src="@{/logoUZ.png}" src="../static/logoUZ.png"
-                                                           alt=""/></a>
+        <a title="UNIZAR" href="http://www.unizar.es"><img height="50" th:src="@{/logoUZ.png}" src="../static/logoUZ.png" /></a>
     </div>
 </nav>
 <div class="container">
