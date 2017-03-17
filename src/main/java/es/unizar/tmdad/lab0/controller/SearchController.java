@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.unizar.tmdad.lab0.service.TwitterLookupService;
+import main.java.es.unizar.tmdad.lab0.service.TwitterLookupService;
 
 
 @Controller
