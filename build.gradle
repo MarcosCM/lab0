@@ -30,7 +30,7 @@ configurations {
 }
 
 bootRepackage {
-    mainClass = 'es.unizar.tmdad.lab0.Application'
+    mainClass = 'main.java.es.unizar.tmdad.lab0.Application'
 }
 
 dependencies {
