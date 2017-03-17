@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.core.MessageSendingOperations;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TwitterLookupService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TwitterLookupService.class);
 	
 	private static final int MAX_STREAMS = 10;
 	
@@ -44,6 +48,7 @@ public class TwitterLookupService {
 	private String accessTokenSecret;
 	
 	public void search(String query) {
+		logger.debug("TwitterLUService search called with query: " + query);
 		// Do nothing if stream was already queried
 		if (streams.containsKey(query)) return;
 		
@@ -51,5 +56,6 @@ public class TwitterLookupService {
         List<StreamListener> list = new ArrayList<StreamListener>();
         list.add(new SimpleStreamListener(messagingTemplate, query));
         streams.put(query, twitter.streamingOperations().filter(query,  list));
+        logger.debug("TwitterLUService added stream for query: " + query);
     }
 }

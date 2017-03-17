@@ -1,6 +1,7 @@
 package main.java.es.unizar.tmdad.lab0.controller;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import main.java.es.unizar.tmdad.lab0.service.TwitterLookupService;
 @Controller
 public class SearchController {
 
-	private static final Logger logger = Logger.getLogger(SearchController.class);
+	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 	
     @Autowired
     TwitterLookupService twitter;
@@ -26,6 +27,6 @@ public class SearchController {
     public void search(@RequestParam("q") String q) {
     	twitter.search(q);
     	
-    	logger.info("/search called with param q="+q);
+    	logger.debug("/search called with param q="+q);
     }
 }

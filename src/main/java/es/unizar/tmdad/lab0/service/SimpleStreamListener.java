@@ -3,7 +3,8 @@ package main.java.es.unizar.tmdad.lab0.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.social.twitter.api.StreamDeleteEvent;
@@ -14,7 +15,7 @@ import org.springframework.util.MimeTypeUtils;
 
 public class SimpleStreamListener implements StreamListener {
 
-	private static final Logger logger = Logger.getLogger(SimpleStreamListener.class);
+	private static final Logger logger = LoggerFactory.getLogger(SimpleStreamListener.class);
 	
 	private MessageSendingOperations<String> messageSendingOperations;
 	private String query;
@@ -36,7 +37,7 @@ public class SimpleStreamListener implements StreamListener {
 
 	@Override
 	public void onTweet(Tweet tweet) {
-		logger.info("Received tweet from query "+ query +": " + tweet);
+		logger.debug("Received tweet from query "+ query +": " + tweet);
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON);
 		// (destination, payload, headers)
