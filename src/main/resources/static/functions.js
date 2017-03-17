@@ -12,9 +12,9 @@ function registerSearch() {
 			$.each(tweets, function(key, tweet){
 				content +='<div class="row panel panel-default">'
 						+ '<div class="panel-heading">'
-						+ '		<a href="https://twiter.com/'+ tweet.fromUser +'" target="_blank"><b>@'+ tweet.fromUser +'</b></a>'
+						+ '		<a href="https://twitter.com/'+ tweet.fromUser +'" target="_blank"><b>@'+ tweet.fromUser +'</b></a>'
 						+ '		<div class="pull-right">'
-						+ '			<a href="https://twiter.com/'+ tweet.fromUser +'/status/'+ tweet.idStr +'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>'
+						+ '			<a href="https://twitter.com/'+ tweet.fromUser +'/status/'+ tweet.idStr +'" target="_blank"><span class="glyphicon glyphicon-link"></span></a>'
 						+ '		</div>'
 						+ '</div>'
 						+ '<div class="panel-body">'+ tweet.unmodifiedText +'</div>'
