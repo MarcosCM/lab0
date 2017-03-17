@@ -16,6 +16,7 @@ function registerSearch() {
 					+ '</div>';
 
 		$.get($(this).attr('action'), {q: $("#q").val()}, function(data) {
+			console.log(data);
 			$("#resultsBlock").empty().append(data);
 		});
 

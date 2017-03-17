@@ -1,4 +1,4 @@
-package es.unizar.tmdad.lab0.controller;
+package main.java.es.unizar.tmdad.lab0.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

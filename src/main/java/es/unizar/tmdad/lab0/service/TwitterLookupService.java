@@ -1,4 +1,4 @@
-package es.unizar.tmdad.lab0.service;
+package main.java.es.unizar.tmdad.lab0.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.social.twitter.api.SearchResults;

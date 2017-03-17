@@ -1,4 +1,4 @@
-package es.unizar.mii.tmdad.lab;
+package test.java.es.unizar.mii.tmdad.lab;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
