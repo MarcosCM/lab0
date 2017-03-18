@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import main.java.es.unizar.tmdad.lab0.service.TwitterLookupService;
 
-
 @Controller
 public class SearchController {
 
@@ -24,9 +23,8 @@ public class SearchController {
     }
 
     @RequestMapping("/search")
-    public void search(@RequestParam("q") String q) {
-    	twitter.search(q);
-    	
-    	logger.debug("/search called with param q="+q);
+    public void search(@RequestParam("q") String query) {
+    	logger.debug("/app/search called with param query="+query);
+    	twitter.search(query);
     }
 }

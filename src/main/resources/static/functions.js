@@ -56,4 +56,7 @@ function subscribeTweetQuery(tweetQuery) {
 		// Error connecting to the endpoint
 		console.log('Error: ' + error);
 	});
+
+	// Request search stream over the query
+	stompClient.send('/app/search', {}, JSON.stringify({'q' : tweetQuery}));
 }
