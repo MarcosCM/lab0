@@ -1,4 +1,4 @@
-package main.java.es.unizar.tmdad.lab0.service;
+package es.unizar.tmdad.lab0.service;
 
 import java.util.HashMap;
 import java.util.Map;

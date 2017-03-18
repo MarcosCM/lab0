@@ -1,4 +1,4 @@
-package main.java.es.unizar.tmdad.lab0.entity;
+package es.unizar.tmdad.lab0.entity;
 
 public class TwitterQuery {
 	

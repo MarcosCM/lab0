@@ -58,5 +58,5 @@ function subscribeTweetQuery(tweetQuery) {
 
 	console.log("sending tweet query to /app/search");
 	// Request search stream over the query
-	stompClient.send('/app/search', {}, JSON.stringify({'query' : tweetQuery}));
+	stompClient.send("/app/search", {}, JSON.stringify({'query' : tweetQuery}));
 }

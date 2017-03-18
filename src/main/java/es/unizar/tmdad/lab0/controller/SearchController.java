@@ -1,13 +1,13 @@
-package main.java.es.unizar.tmdad.lab0.controller;
+package es.unizar.tmdad.lab0.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import main.java.es.unizar.tmdad.lab0.entity.TwitterQuery;
-import main.java.es.unizar.tmdad.lab0.service.TwitterLookupService;
+import es.unizar.tmdad.lab0.entity.TwitterQuery;
+import es.unizar.tmdad.lab0.service.TwitterLookupService;
 
 @Controller
 public class SearchController {
@@ -17,13 +17,7 @@ public class SearchController {
     @Autowired
     TwitterLookupService twitter;
 
-    @RequestMapping("/")
-    public String greeting() {
-    	logger.info("index requested");
-        return "index";
-    }
-
-    @RequestMapping("/search")
+    @MessageMapping("/search")
     public void search(TwitterQuery twitterQuery) {
     	logger.info("/app/search called with param query="+twitterQuery);
     	twitter.search(twitterQuery.getQuery());
