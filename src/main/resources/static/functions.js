@@ -1,5 +1,5 @@
 /* STOMP, SockJS, WebSockets */
-var webSocketEndpoint = '/twitter';
+var webSocketEndpoint = '/search';
 var subscriptionEndpointPrefix = '/queue/search/';
 
 var stompClient = null;
@@ -57,6 +57,7 @@ function subscribeTweetQuery(tweetQuery) {
 		console.log('Error: ' + error);
 	});
 
+	console.log("sending tweet query to /app/search");
 	// Request search stream over the query
-	stompClient.send('/app/search', {}, JSON.stringify({'q' : tweetQuery}));
+	stompClient.send('/app/search', {}, JSON.stringify({query : tweetQuery}));
 }

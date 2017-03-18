@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import main.java.es.unizar.tmdad.lab0.entity.TwitterQuery;
 import main.java.es.unizar.tmdad.lab0.service.TwitterLookupService;
 
 @Controller
@@ -19,12 +19,13 @@ public class SearchController {
 
     @RequestMapping("/")
     public String greeting() {
+    	logger.debug("index requested");
         return "index";
     }
 
     @RequestMapping("/search")
-    public void search(@RequestParam("q") String query) {
-    	logger.debug("/app/search called with param query="+query);
-    	twitter.search(query);
+    public void search(TwitterQuery twitterQuery) {
+    	logger.debug("/app/search called with param query="+twitterQuery);
+    	twitter.search(twitterQuery.getQuery());
     }
 }
