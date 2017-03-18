@@ -19,7 +19,7 @@ public class SearchController {
 
     @MessageMapping("/search")
     public void search(TwitterQuery twitterQuery) {
-    	logger.info("/app/search called with param query="+twitterQuery);
+    	logger.info("/app/search called with param query="+twitterQuery.getQuery());
     	twitter.search(twitterQuery.getQuery());
     }
 }

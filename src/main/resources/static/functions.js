@@ -40,6 +40,7 @@ function subscribeTweetQuery(tweetQuery) {
 	subscription = stompClient.subscribe(subscriptionEndpointPrefix+tweetQuery, function(tweet){
 		console.log('Received: ' + tweet);
 
+        tweet = JSON.parse(tweet.body);
 		var content = '';
 		content +='<div class="row panel panel-default">'
 				+ '<div class="panel-heading">'
