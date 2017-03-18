@@ -1,5 +1,5 @@
 /* STOMP, SockJS, WebSockets */
-var webSocketEndpoint = '/search';
+var webSocketEndpoint = '/twitterSearch';
 var subscriptionEndpointPrefix = '/queue/search/';
 
 var stompClient = null;
@@ -10,6 +10,8 @@ var resultsBlock = null;
 $(document).ready(function() {
 	qTextInput = $('input#q');
 	resultsBlock = $("#resultsBlock");
+    // Create websocket
+    connectWebSocket();
 	registerSearch();
 });
 
@@ -17,9 +19,7 @@ function registerSearch() {
 	$("#search").submit(function(event){
 		// Clean tweets
 		resultsBlock.empty();
-		// Create websocket
-		if (stompClient == null) connectWebSocket();
-		else subscribeTweetQuery(qTextInput.val());
+		subscribeTweetQuery(qTextInput.val());
 
 		event.preventDefault();
 	});
@@ -29,8 +29,6 @@ function connectWebSocket() {
 	stompClient = Stomp.over(new SockJS(webSocketEndpoint));
 	stompClient.connect({}, function(frame) {
 		console.log('Connected: ' + frame);
-
-		subscribeTweetQuery(qTextInput.val());
 	});
 }
 
@@ -59,5 +57,5 @@ function subscribeTweetQuery(tweetQuery) {
 
 	console.log("sending tweet query to /app/search");
 	// Request search stream over the query
-	stompClient.send('/app/search', {}, JSON.stringify({query : tweetQuery}));
+	stompClient.send('/app/search', {}, JSON.stringify({'query' : tweetQuery}));
 }

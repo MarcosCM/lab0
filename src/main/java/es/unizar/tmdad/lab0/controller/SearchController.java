@@ -19,13 +19,13 @@ public class SearchController {
 
     @RequestMapping("/")
     public String greeting() {
-    	logger.debug("index requested");
+    	logger.info("index requested");
         return "index";
     }
 
     @RequestMapping("/search")
     public void search(TwitterQuery twitterQuery) {
-    	logger.debug("/app/search called with param query="+twitterQuery);
+    	logger.info("/app/search called with param query="+twitterQuery);
     	twitter.search(twitterQuery.getQuery());
     }
 }

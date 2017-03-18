@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.messaging.core.MessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.social.twitter.api.Stream;
 import org.springframework.social.twitter.api.StreamListener;
 import org.springframework.social.twitter.api.Twitter;
@@ -24,7 +24,7 @@ public class TwitterLookupService {
 	private static final int MAX_STREAMS = 10;
 	
 	@Autowired
-	private MessageSendingOperations<String> messagingTemplate;
+	private SimpMessageSendingOperations messagingTemplate;
 	
 	// Queried streams
 	// LinkedHashMap to guarantee FIFO replacement when max number of streams is reached (insertion-ordered)
@@ -48,7 +48,7 @@ public class TwitterLookupService {
 	private String accessTokenSecret;
 	
 	public void search(String query) {
-		logger.debug("TwitterLUService search called with query: " + query);
+		logger.info("TwitterLUService search called with query: " + query);
 		// Do nothing if stream was already queried
 		if (streams.containsKey(query)) return;
 		
@@ -56,6 +56,6 @@ public class TwitterLookupService {
         List<StreamListener> list = new ArrayList<StreamListener>();
         list.add(new SimpleStreamListener(messagingTemplate, query));
         streams.put(query, twitter.streamingOperations().filter(query,  list));
-        logger.debug("TwitterLUService added stream for query: " + query);
+        logger.info("TwitterLUService added stream for query: " + query);
     }
 }
