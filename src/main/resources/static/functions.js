@@ -33,6 +33,7 @@ function connectWebSocket() {
 }
 
 function subscribeTweetQuery(tweetQuery) {
+    console.log("TweetQuery: " + tweetQuery);
 	// Unsubscribe previous query
 	if (subscription != null) subscription.unsubscribe();
 	// Subscribe new query
